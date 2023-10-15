@@ -3,6 +3,42 @@
 #include <stdio.h>
 
 /**
+ * arg_handler - a function that handles cases for printf
+ * @format: print format
+ * @data: valist
+ * @count: counter pointer
+ *
+ * Return: None
+ */
+void arg_handler(const char format, va_list data, int *count)
+{
+	switch (format)
+	{
+		case 'c': /* print character */
+			*count += _putchar(va_arg(data,
+			int));
+			break;
+		case 's': /* print str */
+			*count += print_str2(va_arg(data,
+			char *));
+			break;
+		case '%': /* print character */
+			*count += _putchar('%');
+			break;
+		case 'd':
+			*count += print_decimal(va_arg(data,
+			int));
+			break;
+		case 'i':
+			*count += print_decimal(va_arg(data,
+			int));
+			break;
+		default:
+			break;
+	}
+}
+
+/**
  * _printf - a function that produces output according to a format
  * @format: identifier.
  *
@@ -24,35 +60,7 @@ int _printf(const char *format, ...)
 			i++;
 		} else if (format[i] == '%' && format[i + 1] != ' ')
 		{
-			switch (format[i + 1])
-			{
-				case 'c': /* print character */
-					count += _putchar(va_arg(data,
-					int));
-					break;
-		 		case 's':
-                                        count += print_string(va_arg(data, char *));
-					break;
-				case '%': /* print character */
-					count += _putchar('%');
-					break;
-				 case 'd':
-                                        count += print_decimal(va_arg(data, int));
-                                 break;
-                                 case 'i':
-                                        count += print_decimal(va_arg(data, int));
-                                  break;
-				    case 'b':
-                                         count += print_binary(va_arg(data, int));
-			          break;
-				   case 'u':
-                                        count += print_unsigned(va_arg(data, unsigned int));
-                                  break;
-
-				default:
-					break;
-			}
-
+			arg_handler(format[i + 1], data, &count);
 			i += 2;
 		}
 

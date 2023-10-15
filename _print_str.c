@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _strlen - Returns the lenght of a string.
+ * _strlen - returns the lenght of a string.
  * @s: Type char pointer
  * Return: c.
  */
@@ -16,7 +16,7 @@ int _strlen(char *s)
 }
 
 /**
- * _strlenc - Strlen function but applied for constant char pointer s
+ * _strlenc - strlen function but applied for constant char pointer s
  * @s: Type char pointer
  * Return: c
  */
@@ -29,7 +29,6 @@ int _strlenc(const char *s)
 
 	return (c);
 }
-
 
 /**
  * print_str1 - a function used to print string
@@ -56,6 +55,31 @@ int print_str1(char *string)
  * Return: the length of the string.
  */
 int print_str2(char *s)
+{
+	int i, len;
+
+	if (s == NULL)
+	{
+		s = "(null)";
+		len = _strlen(s);
+		for (i = 0; i < len; i++)
+			_putchar(s[i]);
+		return (len);
+	}
+
+	len = _strlen(s);
+	for (i = 0; i < len; i++)
+		_putchar(s[i]);
+
+	return (len);
+}
+
+/**
+ * print_str - print a string.
+ * @s: string pointer
+ * Return: the length of the string.
+ */
+int print_str(char *s)
 {
 	int i, len;
 
