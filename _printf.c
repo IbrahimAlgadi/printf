@@ -18,17 +18,26 @@ int _printf(const char *format, ...)
 			count += _putchar(format[i]);
 			i++;
 		}
+
 		/* if detected % in the string sequence then check the char after the % */
 		else if (format[i] == '%' && format[i + 1] != ' ')
 		{
-			/* If after the % is c then */
-			if (format[i + 1] == 'c')
+			switch (format[i + 1])
 			{
-				count += _putchar(va_arg(data, int));
-			}
-			else /* Otherwise do nothing */
-			{
-				break;
+				case 'c':
+					/* print character */
+					count += _putchar(va_arg(data, int));
+					break;
+				case 's':
+					/* print str */
+					count += print_str(va_arg(data, char *));
+					break;
+				case '%':
+					/* print character */
+					count += _putchar('%');
+					break;
+				default:
+					break;
 			}
 
 			i += 2;

@@ -4,9 +4,8 @@
 /* _printf replacement of printf */
 int _printf(const char *format, ...);
 
-
-/* custom output function */
+/* custom output functions */
 int _putchar(char c);
-
+int print_str(char *);
 
 #endif
