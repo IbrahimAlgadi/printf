@@ -19,7 +19,7 @@ void arg_handler(const char format, va_list data, int *count)
 			int));
 			break;
 		case 's': /* print str */
-			*count += print_str(va_arg(data,
+			*count += print_str1(va_arg(data,
 			char *));
 			break;
 		case '%': /* print character */
