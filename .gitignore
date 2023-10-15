@@ -2,9 +2,6 @@
 .idea
 *~
 
-# putchar
-_putchar.c
-
 # main
 main.c
 *__test.c
