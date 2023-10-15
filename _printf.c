@@ -2,7 +2,14 @@
 #include "main.h"
 #include <stdio.h>
 
-
+/**
+ * arg_handler - a function that handles cases for printf
+ * @format: print format
+ * @data: valist
+ * @count: counter pointer
+ *
+ * Return: None
+ */
 void arg_handler(const char format, va_list data, int *count) {
 	switch (format)
 	{
