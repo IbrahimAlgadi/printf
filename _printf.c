@@ -31,7 +31,7 @@ int _printf(const char *format, ...)
 					int));
 					break;
 				case 's': /* print str */
-					count += print_str(va_arg(data,
+					count += print_str2(va_arg(data,
 					char *));
 					break;
 				case '%': /* print character */
