@@ -19,7 +19,7 @@ void arg_handler(const char format, va_list data, int *count)
 			int));
 			break;
 		case 's': /* print str */
-			*count += print_str2(va_arg(data,
+			*count += print_str(va_arg(data,
 			char *));
 			break;
 		case '%': /* print character */
@@ -32,6 +32,9 @@ void arg_handler(const char format, va_list data, int *count)
 		case 'i':
 			*count += print_decimal(va_arg(data,
 			int));
+			break;
+		case 'b':
+			*count += print_binary(va_arg(data, int));
 			break;
 		default:
 			break;
