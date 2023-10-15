@@ -8,6 +8,7 @@ _putchar.c
 # main
 main.c
 *__test.c
+test__*
 
 a
 a.exe
