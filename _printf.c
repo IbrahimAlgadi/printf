@@ -18,14 +18,15 @@ int _printf(const char *format, ...)
 			count += _putchar(format[i]);
 			i++;
 		}
+		/* if detected % in the string sequence then check the char after the % */
 		else if (format[i] == '%' && format[i + 1] != ' ')
 		{
-
+			/* If after the % is c then */
 			if (format[i + 1] == 'c')
 			{
 				count += _putchar(va_arg(data, int));
 			}
-			else
+			else /* Otherwise do nothing */
 			{
 				break;
 			}
