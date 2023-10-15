@@ -10,23 +10,28 @@
  *
  * Return: None
  */
-void arg_handler(const char format, va_list data, int *count) {
+void arg_handler(const char format, va_list data, int *count)
+{
 	switch (format)
 	{
 		case 'c': /* print character */
-			*count += _putchar(va_arg(data, int));
+			*count += _putchar(va_arg(data,
+			int));
 			break;
 		case 's': /* print str */
-			*count += print_str2(va_arg(data, char *));
+			*count += print_str2(va_arg(data,
+			char *));
 			break;
 		case '%': /* print character */
 			*count += _putchar('%');
 			break;
 		case 'd':
-			*count += print_decimal(va_arg(data, int));
+			*count += print_decimal(va_arg(data,
+			int));
 			break;
 		case 'i':
-			*count += print_decimal(va_arg(data, int));
+			*count += print_decimal(va_arg(data,
+			int));
 			break;
 		default:
 			break;
@@ -53,8 +58,7 @@ int _printf(const char *format, ...)
 		{
 			count += _putchar(format[i]); /* count characters */
 			i++;
-		}
-		else if (format[i] == '%' && format[i + 1] != ' ')
+		} else if (format[i] == '%' && format[i + 1] != ' ')
 		{
 			arg_handler(format[i + 1], data, &count);
 			i += 2;
