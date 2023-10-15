@@ -15,6 +15,8 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 int _puts(char *str);
 char *converter(unsigned long int num, int base, int lowercase);
+int _strlen(char *s);
+int _strlenc(const char *s);
 
 int print_str(char *);
 int print_str1(char *);
