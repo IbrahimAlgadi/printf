@@ -30,9 +30,8 @@ int _printf(const char *format, ...)
 					count += _putchar(va_arg(data,
 					int));
 					break;
-				case 's': /* print str */
-					count += print_str(va_arg(data,
-					char *));
+		 		case 's':
+                                        count += print_string(va_arg(data, char *));
 					break;
 				case '%': /* print character */
 					count += _putchar('%');
@@ -46,6 +45,9 @@ int _printf(const char *format, ...)
 				    case 'b':
                                          count += print_binary(va_arg(data, int));
 			          break;
+				   case 'u':
+                                        count += print_unsigned(va_arg(data, unsigned int));
+                                  break;
 
 				default:
 					break;
