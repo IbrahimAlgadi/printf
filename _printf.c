@@ -45,7 +45,6 @@ int _printf(const char *format, ...)
 					count += print_decimal(va_arg(data,
 					int));
 					break;
-
 				default:
 					break;
 			}

@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * print_decimal - print decimal
+ * @value: arg
+ * Return: int
+ */
+
 int print_decimal(int value)
 {
 	int count = 0;
@@ -15,7 +21,7 @@ int print_decimal(int value)
 	 * First remove the last digit of number and print
 	 * the remaining digits using recursion, then print
 	 * the last digit
-	 * */
+	 */
 	if (value / 10)
 		count += print_decimal(value / 10);
 
