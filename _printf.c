@@ -11,7 +11,6 @@ int _printf(const char *format, ...)
 
 	for (i = 0; format[i] != '\0';)
 	{
-
 		/* count the number of characters */
 		/* print to the screen each character counted */
 		if (format[i] != '%')
