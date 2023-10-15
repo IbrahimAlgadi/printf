@@ -16,5 +16,6 @@ int print_str(char *);
 int print_str1(char *);
 int print_str2(char *);
 int print_decimal(int value);
+void arg_handler(const char format, va_list data, int *count);
 
 #endif
