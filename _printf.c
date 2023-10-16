@@ -5,10 +5,8 @@
 /**
  * arg_handler - a function that handles cases for printf
  * @format: print format
- * @data: valist
- * @count: counter pointer
  *
- * Return: None
+ * Return: Int
  */
 int (*arg_handler(const char format))(va_list data)
 {
@@ -23,15 +21,8 @@ int (*arg_handler(const char format))(va_list data)
 		{"b", print_binary},
 	};
 	for (i = 0; i < fts; i++)
-	{
-		/*printf("%c = %c\n", *functions[i].fmt, format);*/
 		if (*functions[i].fmt == format)
-		{
-			/*printf("%c\n", format);*/
-			return functions[i].fnc;
-		}
-	}
-	/*printf("NULL");*/
+			return (functions[i].fnc);
 	return (NULL);
 }
 
@@ -45,7 +36,7 @@ int (*arg_handler(const char format))(va_list data)
 int _printf(const char *format, ...)
 {
 	int count = 0, i;
-	int (*print_fuc)(va_list );
+	int (*print_fuc)(va_list);
 	va_list data;
 
 	va_start(data, format);
