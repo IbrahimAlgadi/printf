@@ -36,7 +36,8 @@ int print_char(va_list data)
 {
 	char s;
 
-	s = va_arg(data, int);
+	s = va_arg(data,
+	int);
 	_putchar(s);
 
 	return (1);
@@ -64,8 +65,20 @@ int print_binary(va_list data)
  */
 int print_decimal(va_list data)
 {
+	int value = va_arg(data,
+	int);
+
+	return (print_dec(value));
+}
+
+/**
+ * print_dec - print decimal
+ * @value: int
+ * Return: int
+ */
+int print_dec(int value)
+{
 	int count = 0;
-	int value = va_arg(data, int);
 
 	/* print '-' for negative numbers */
 	if (value < 0)
@@ -73,6 +86,10 @@ int print_decimal(va_list data)
 		count += _putchar('-');
 		value = value * -1;
 	}
+
+	if (value / 10)
+		count += print_dec(value / 10);
+
 	count += _putchar(value % 10 + '0');
 
 	return (count);
