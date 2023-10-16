@@ -1,32 +1,15 @@
 #include "main.h"
 
 /**
- * print_str1 - a function used to print string
- * @string: string pointer
- *
- * Return: Count
- *
- */
-int print_str1(char *string)
-{
-	int count = 0, i;
-
-	for (i = 0; string[i] != '\0'; i++)
-	{
-		count += _putchar(string[i]);
-	}
-
-	return (count);
-}
-
-/**
  * print_str - print a string.
  * @s: string pointer
  * Return: the length of the string.
  */
-int print_str(char *s)
+int print_str(va_list data)
 {
 	int i, len;
+	char *s = va_arg(data,
+	char *);
 
 	if (s == NULL)
 	{
@@ -45,12 +28,28 @@ int print_str(char *s)
 }
 
 /**
+ * print_char - prints a char.
+ * @val: arguments.
+ * Return: 1.
+ */
+int print_char(va_list data)
+{
+	char s;
+	s = va_arg(data, int);
+	_putchar(s);
+	return (1);
+}
+
+
+/**
  * print_binary - prints a number in base 2
  * @num: numb
  * Return: the number of char printed
  */
-int print_binary(unsigned int num)
+int print_binary(va_list data)
 {
+	unsigned int num = va_arg(data,
+	int);
 	char *str = converter(num, 2, 0);
 
 	return (_puts(str));
@@ -61,9 +60,11 @@ int print_binary(unsigned int num)
  * @value: arg
  * Return: int
  */
-int print_decimal(int value)
+int print_decimal(va_list data)
 {
 	int count = 0;
+	int value = va_arg(data,
+	int);
 
 	/* print '-' for negative numbers */
 	if (value < 0)
@@ -71,14 +72,6 @@ int print_decimal(int value)
 		count += _putchar('-');
 		value = value * -1;
 	}
-
-	/*
-	 * First remove the last digit of number and print
-	 * the remaining digits using recursion, then print
-	 * the last digit
-	 */
-	if (value / 10)
-		count += print_decimal(value / 10);
 
 	count += _putchar(value % 10 + '0');
 
@@ -91,12 +84,11 @@ int print_decimal(int value)
  *
  * Return: int
  */
-int print_unsigned(unsigned int value)
+int print_unsigned(va_list data)
 {
 	int count = 0;
-
-	if (value / 10)
-		count += print_decimal(value / 10);
+	unsigned int value = va_arg(data,
+	int);
 
 	count += _putchar(value % 10 + '0');
 

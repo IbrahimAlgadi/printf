@@ -10,35 +10,29 @@
  *
  * Return: None
  */
-void arg_handler(const char format, va_list data, int *count)
+int (*arg_handler(const char format))(va_list data)
 {
-	switch (format)
+	int fts = 6, i;
+
+	format_match functions[] = {
+		{"c", print_char},
+		{"s", print_str},
+		{"%", print_char},
+		{"d", print_decimal},
+		{"i", print_decimal},
+		{"b", print_binary},
+	};
+	for (i = 0; i < fts; i++)
 	{
-		case 'c': /* print character */
-			*count += _putchar(va_arg(data,
-			int));
-			break;
-		case 's': /* print str */
-			*count += print_str1(va_arg(data,
-			char *));
-			break;
-		case '%': /* print character */
-			*count += _putchar('%');
-			break;
-		case 'd':
-			*count += print_decimal(va_arg(data,
-			int));
-			break;
-		case 'i':
-			*count += print_decimal(va_arg(data,
-			int));
-			break;
-		case 'b':
-			*count += print_binary(va_arg(data, int));
-			break;
-		default:
-			break;
+		/*printf("%c = %c\n", *functions[i].fmt, format);*/
+		if (*functions[i].fmt == format)
+		{
+			/*printf("%c\n", format);*/
+			return functions[i].fnc;
+		}
 	}
+	/*printf("NULL");*/
+	return (NULL);
 }
 
 /**
@@ -51,9 +45,13 @@ void arg_handler(const char format, va_list data, int *count)
 int _printf(const char *format, ...)
 {
 	int count = 0, i;
+	int (*print_fuc)(va_list );
 	va_list data;
 
 	va_start(data, format);
+
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 
 	for (i = 0; format[i] != '\0';)
 	{
@@ -63,7 +61,15 @@ int _printf(const char *format, ...)
 			i++;
 		} else if (format[i] == '%' && format[i + 1] != ' ')
 		{
-			arg_handler(format[i + 1], data, &count);
+			if (format[i + 1] == '%')
+			{
+				count += _putchar('%');
+				i += 2;
+				continue;
+			}
+			print_fuc = arg_handler(format[i + 1]);
+			if (print_fuc)
+				count += print_fuc(data);
 			i += 2;
 		}
 
