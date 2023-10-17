@@ -7,14 +7,21 @@ int write_unsgnd(va_list data) {
     int flags = 0;
     int width = 0;
     int precision = 0;
-    int size = 0;       
+    int size = 0
+    int length;
+    int number;
+    char padd;
+    int i;
 
-    int number = va_arg(data, int);
+    number = va_arg(data, int);
+    UNUSED(size);
+    UNUSED(is_negative);
+    UNUSED(number);
 
-    int length = BUFF_SIZE - ind - 1, i = 0;
-    char padd = ' ';
+    length = BUFF_SIZE - ind - 1, i = 0;
+    padd = ' ';
 
-    if (precision == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0')
+    if (precision== 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0')
         return 0;
 
     if (precision > 0 && precision < length)

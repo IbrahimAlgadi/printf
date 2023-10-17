@@ -19,6 +19,33 @@
 #define F_SPACE 16
 
 
+
+
+/**
+ * struct fmt - Struct op
+ *
+ * @fmt: The format.
+ * @fn: The function associated.
+ */
+struct fmt
+{
+	char fmt;
+	int (*fn)(va_list, char[], int, int, int, int);
+};
+
+
+/**
+ * typedef struct fmt fmt_t - Struct op
+ *
+ * @fmt: The format.
+ * @fm_t: The function associated.
+ */
+typedef struct fmt fmt_t;
+
+
+
+
+
 /**
  * struct format - match the conversion specifiers for printf
  *
@@ -73,6 +100,7 @@ int print_pointer(va_list data);
 
 int print_unsigned(va_list data);
 long int convert_size_unsgnd(unsigned long int num, int size);
+long int convert_size_number(long int num, int size);
 
 int print_octal(va_list data);
 
@@ -81,6 +109,7 @@ int print_hexadecimal(va_list data);
 int print_hexa_upper(va_list data);
 
 int print_hexa(va_list data);
+int Handle_print(va_list data);
 
 
 

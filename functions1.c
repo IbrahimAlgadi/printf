@@ -177,6 +177,7 @@ int print_unsigned(va_list data)
 
 int print_octal(va_list data)
 {
+   
     int i = BUFF_SIZE - 2;
     unsigned long int num = va_arg(data, unsigned long int);
     unsigned long int init_num = num;
