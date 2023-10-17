@@ -36,6 +36,7 @@ typedef struct flags
 /* _printf replacement of printf */
 /* void arg_handler(const char format, va_list data, int *count); */
 int (*arg_handler(const char format))(va_list data);
+int handle_print(const char *fmt, int *i,va_list list, char buffer[], int flags, int width, int precision, int size);
 int _printf(const char *format, ...);
 
 /* custom output functions */
@@ -52,6 +53,10 @@ int print_binary(va_list data);
 int get_flag(char s, flags_t *f);
 int get_width(const char *format, int *i, va_list list);
 int get_precision(const char *format, int *i, va_list list);
+
+
+/*Function to print string in reverse*/
+int print_reverse(va_list types, char buffer[],int flags, int width, int precision, int size);
 
 /*Function to print a string in rot 13*/
 int print_rot13string(va_list types, char buffer[],int flags, int width, int precision, int size);
