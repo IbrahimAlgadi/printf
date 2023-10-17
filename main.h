@@ -53,6 +53,11 @@ int get_flag(char s, flags_t *f);
 int get_width(const char *format, int *i, va_list list);
 int get_precision(const char *format, int *i, va_list list);
 
+/*Function to print a string in rot 13*/
+int print_rot13string(va_list types, char buffer[],int flags, int width, int precision, int size);
+
+
+
 /****************** UTILS ******************/
 int is_digit(char);
 int is_printable(char);
