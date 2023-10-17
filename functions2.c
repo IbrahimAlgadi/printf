@@ -32,7 +32,6 @@ int get_flag(char s, flags_t *f)
 	return (i);
 }
 
-#include "main.h"
 
 /**
  * get_width - Calculates the width for printing

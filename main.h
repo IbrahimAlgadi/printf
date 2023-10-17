@@ -51,9 +51,11 @@ int print_dec(int value);
 int print_binary(va_list data);
 int get_flag(char s, flags_t *f);
 int get_width(const char *format, int *i, va_list list);
+int get_precision(const char *format, int *i, va_list list);
 
 /****************** UTILS ******************/
 int is_digit(char);
+int is_printable(char);
 
 
 #endif
