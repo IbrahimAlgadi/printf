@@ -72,6 +72,7 @@ int print_non_printable(va_list data);
 int print_pointer(va_list data);
 
 int print_unsigned(va_list data);
+long int convert_size_unsgnd(unsigned long int num, int size);
 
 int print_octal(va_list data);
 
