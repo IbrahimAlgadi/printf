@@ -7,6 +7,20 @@
 #include <limits.h>
 #include <unistd.h>
 
+#define UNUSED(x) (void)(x)
+#define BUFF_SIZE 1024
+
+/* FLAGS */
+#define F_MINUS 1
+#define F_PLUS 2
+#define F_ZERO 4
+#define F_HASH 8
+#define F_SPACE 16
+
+/* SIZES */
+#define S_LONG 2
+#define S_SHORT 1
+
 /**
  * struct format - match the conversion specifiers for printf
  *
@@ -49,10 +63,11 @@ int print_str(va_list data);
 int print_char(va_list data);
 int print_decimal(va_list data);
 int print_dec(int value);
+int print_int(va_list data);
 int print_binary(va_list data);
 int get_flag(char s, flags_t *f);
-int get_width(const char *format, int *i, va_list list);
-int get_precision(const char *format, int *i, va_list list);
+int get_width(va_list data);
+int get_precision(va_list data);
 
 
 /*Function to print string in reverse*/

@@ -27,6 +27,8 @@ int print_str(va_list data)
 	return (len);
 }
 
+
+
 /**
  * print_char - prints a char.
  * @data: arguments.
@@ -42,6 +44,40 @@ int print_char(va_list data)
 
 	return (1);
 }
+
+/**
+ * print_int - Print int
+ * @data: arguments.
+ * Return: the printed integer value.
+ */
+int print_int(va_list data)
+{
+	 int value = va_arg(data, int);
+
+    if (value < 0) {
+        putchar('-'); /*Print a minus sign for negative numbers*/
+        value = -value; /* Make the number positive*/
+    }
+
+    char buffer[12]; /*Assuming a maximum integer length of 11 characters*/
+    int length = 0;
+
+    do {
+        buffer[length++] = '0' + value % 10;
+        value /= 10;
+    } while (value);
+
+    int result = 0;
+    for (int i = length - 1; i >= 0; i--) {
+        putchar(buffer[i]); 
+        result = result * 10 + (buffer[i] - '0');
+    }
+    putchar('\n');
+
+    return result;
+}
+
+
 
 
 /**

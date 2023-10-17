@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdarg.h>
 /**
  * print_reverse - Prints reverse string.
  * @types: Lista of arguments
@@ -93,3 +93,66 @@ int print_rot13string(va_list types, char buffer[],
 	return (count);
 }
 
+
+/**
+ * get_precision - Calculates the precision for printing
+ * @data: A va_list containing arguments.
+ *
+ * Return: Precision.
+ */
+int get_precision(va_list data) {
+    int precision = -1;
+    int curr_i = 0;
+
+    /* Assuming that va_arg should be used to fetch the values*/
+    int value = va_arg(data, int);
+
+    if (value != '.')
+        return precision;
+
+    precision = 0;
+
+    while (1) {
+        value = va_arg(data, int);
+
+        if (value >= '0' && value <= '9') {
+            precision *= 10;
+            precision += value - '0';
+        } else if (value == '*') {
+            precision = va_arg(data, int);
+            break;
+        } else {
+            break;
+        }
+    }
+
+    return precision;
+}
+
+
+/**
+ * get_width - Extract and return the width from a va_list
+ * @data: A va_list containing the width information
+ *
+ * Return: The extracted width value
+ */
+int get_width(va_list data) {
+    int width = 0;
+    int value;
+
+    while (1) {
+        value = va_arg(data, int);
+
+        if (value >= '0' && value <= '9') {
+            width *= 10;
+            width += value - '0';
+        } else if (value == '*') {
+            width = va_arg(data, int);
+            break;
+        } else {
+            break;
+        }
+    }
+
+    return width;
+}
