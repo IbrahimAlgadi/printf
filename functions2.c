@@ -102,7 +102,6 @@ int print_rot13string(va_list types, char buffer[],
  */
 int get_precision(va_list data) {
     int precision = -1;
-    int curr_i = 0;
 
     /* Assuming that va_arg should be used to fetch the values*/
     int value = va_arg(data, int);
