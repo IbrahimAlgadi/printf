@@ -1,5 +1,47 @@
 #include "main.h"
-#include <stdarg.h>
+
+
+/************************* PRINT NON PRINTABLE *************************/
+/**
+ * print_non_printable - Prints ascii codes in hexa of non printable chars
+ * @types: Lista of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Number of chars printed
+ */
+int print_non_printable(va_list types, char buffer[],
+	int flags, int width, int precision, int size)
+{
+	int i = 0, offset = 0;
+	char *str = va_arg(types, char *);
+
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
+
+	if (str == NULL)
+		return (write(1, "(null)", 6));
+
+	while (str[i] != '\0')
+	{
+		if (is_printable(str[i]))
+			buffer[i + offset] = str[i];
+		else
+			offset += append_hexa_code(str[i], buffer, i + offset);
+
+		i++;
+	}
+
+	buffer[i + offset] = '\0';
+
+	return (write(1, buffer, i + offset));
+}
+
+/************************* PRINT REVERSE *************************/
 /**
  * print_reverse - Prints reverse string.
  * @types: Lista of arguments
@@ -10,6 +52,7 @@
  * @size: Size specifier
  * Return: Numbers of chars printed
  */
+
 int print_reverse(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
@@ -41,7 +84,7 @@ int print_reverse(va_list types, char buffer[],
 	}
 	return (count);
 }
-
+/************************* PRINT A STRING IN ROT13 *************************/
 /**
  * print_rot13string - Print a string in rot13.
  * @types: Lista of arguments
@@ -92,67 +135,3 @@ int print_rot13string(va_list types, char buffer[],
 	}
 	return (count);
 }
-
-
-/**
- * get_precision - Calculates the precision for printing
- * @data: A va_list containing arguments.
- *
- * Return: Precision.
- */
-int get_precision(va_list data) {
-    int precision = -1;
-
-    /* Assuming that va_arg should be used to fetch the values*/
-    int value = va_arg(data, int);
-
-    if (value != '.')
-        return precision;
-
-    precision = 0;
-
-    while (1) {
-        value = va_arg(data, int);
-
-        if (value >= '0' && value <= '9') {
-            precision *= 10;
-            precision += value - '0';
-        } else if (value == '*') {
-            precision = va_arg(data, int);
-            break;
-        } else {
-            break;
-        }
-    }
-
-    return precision;
-}
-
-
-/**
- * get_width - Extract and return the width from a va_list
- * @data: A va_list containing the width information
- *
- * Return: The extracted width value
- */
-int get_width(va_list data) {
-    int width = 0;
-    int value;
-
-    while (1) {
-        value = va_arg(data, int);
-
-        if (value >= '0' && value <= '9') {
-            width *= 10;
-            width += value - '0';
-        } else if (value == '*') {
-            width = va_arg(data, int);
-            break;
-        } else {
-            break;
-        }
-    }
-
-    return width;
-}
-

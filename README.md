@@ -8,7 +8,7 @@
 - Technical Writing
 - Printf function brief - What to know to create your own Printf function
 - All about Team Projects + Pairings + FAQ (A must read)
-  - Equal as possible == no more than a 40/60 contribution from the respective partner’s user name (this will be different in the off chance of a third member)
+    - Equal as possible == no more than a 40/60 contribution from the respective partner’s user name (this will be different in the off chance of a third member)
 
 
 ### Authors &copy;

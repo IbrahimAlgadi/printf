@@ -1,21 +1,6 @@
 #include "main.h"
 
 /**
- * is_digit - Verifies if a char is a digit
- * @c: Char to be evaluated
- *
- * Return: 1 if c is a digit, 0 otherwise
- */
-int is_digit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-
-	return (0);
-}
-
-
-/**
  * is_printable - Evaluates if a char is printable
  * @c: Char to be evaluated.
  *
@@ -28,6 +13,7 @@ int is_printable(char c)
 
 	return (0);
 }
+
 /**
  * append_hexa_code - Append ascci in hexadecimal code to buffer
  * @buffer: Array of chars.
@@ -52,22 +38,17 @@ int append_hexa_code(char ascii_code, char buffer[], int i)
 }
 
 /**
- * convert_size_unsgnd - Casts a number to the specified size
- * @num: Number to be casted
- * @size: Number indicating the type to be casted
+ * is_digit - Verifies if a char is a digit
+ * @c: Char to be evaluated
  *
- * Return: Casted value of num
+ * Return: 1 if c is a digit, 0 otherwise
  */
-long int convert_size_unsgnd(unsigned long int num, int size)
+int is_digit(char c)
 {
-	int  S_LONG;
-	int S_SHORT;
-	if (size == S_LONG)
-		return (num);
-	else if (size == S_SHORT)
-		return ((unsigned short)num);
+	if (c >= '0' && c <= '9')
+		return (1);
 
-	return ((unsigned int)num);
+	return (0);
 }
 
 /**
@@ -85,4 +66,21 @@ long int convert_size_number(long int num, int size)
 		return ((short)num);
 
 	return ((int)num);
+}
+
+/**
+ * convert_size_unsgnd - Casts a number to the specified size
+ * @num: Number to be casted
+ * @size: Number indicating the type to be casted
+ *
+ * Return: Casted value of num
+ */
+long int convert_size_unsgnd(unsigned long int num, int size)
+{
+	if (size == S_LONG)
+		return (num);
+	else if (size == S_SHORT)
+		return ((unsigned short)num);
+
+	return ((unsigned int)num);
 }
