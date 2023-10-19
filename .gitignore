@@ -5,11 +5,7 @@
 # main
 main.c
 *__test.c
-test_*
-
+test__*
 
 a
 a.exe
-
-run.sh
-
